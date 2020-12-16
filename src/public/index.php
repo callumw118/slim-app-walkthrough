@@ -16,6 +16,7 @@ $config['db']['dbname'] = 'exampleapp';
 
 $app = new \Slim\App(['settings' => $config]);
 
+// Route to display name from URL
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args){
     $name = $args['name'];
     $response->getBody()->write("Hello, $name");
@@ -24,7 +25,6 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 });
 
 // Grouping Middleware
-
 $app->group('/utils', function () use ($app) {
     $app->get('/date', function ($request, $response) {
         return $response->getBody()->write(date('Y-m-d'));
